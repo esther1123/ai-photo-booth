@@ -1,6 +1,6 @@
 import { AppLayout, BreadcrumbGroup, HelpPanel, Icon, Link, SideNavigation } from '@cloudscape-design/components';
 import React, { useState } from 'react';
-import AIPhotoWizard from './components/photo-wizard/AIPhotoWizard';
+import Management from './components/management/Management';
 
 const toolsContent = (
   <HelpPanel
@@ -34,7 +34,7 @@ const toolsContent = (
 
 const App = () => {
   const [isToolsOpen, setIsToolsOpen] = useState(false);
-  const [isNavigationOpen, setIsNavigationOpen] = useState(false);
+  const [isNavigationOpen, setIsNavigationOpen] = useState(true);
 
   // TODO: delete
   console.log(window.API_ENDPOINT);
@@ -45,14 +45,14 @@ const App = () => {
       onToolsChange={({ detail: { open } }) => setIsToolsOpen(open)}
       contentType="default"
       content={
-        <AIPhotoWizard />
+        <Management />
       }
       navigation={
         <SideNavigation
           activeHref={'#'}
           header={{ href: '#', text: '服务' }}
           items={[
-            { type: 'link', text: '人像合成', href: '#' }
+            { type: 'link', text: '服务状态管理', href: '#' }
           ]}
         />
       }
@@ -62,7 +62,7 @@ const App = () => {
         <BreadcrumbGroup
           items={[
             { text: '服务', href: '#' },
-            { text: '人像合成', href: '#' }
+            { text: '服务状态管理', href: '#' }
           ]}
         />
       }
