@@ -10,8 +10,6 @@ const Prepare = () => {
         <tr>
           <th>AWS服务</th>
           <th>需要开启</th>
-          <th>当前状态</th>
-          <th>开启时间</th>
           <th>开启地址</th>
         </tr>
         </thead>
@@ -19,30 +17,18 @@ const Prepare = () => {
         <tr>
           <td>Config</td>
           <td>否</td>
-          <td><Icon name="add-plus" />已开启</td>
-          <td>2022-08-01</td>
-          <td><Link href="https://us-east-1.console.aws.amazon.com"
+          <td><Link href="https://us-east-1.console.aws.amazon.com/console/home?region=us-east-1#"
                     target="_blank">us-east-1.console.aws.amazon.com</Link></td>
         </tr>
         <tr>
-          <td>Cost and Explorer</td>
+          <td>AWS Cost Explorer</td>
           <td>否</td>
-          <td><Icon name="add-plus" />已开启</td>
-          <td>2022-07-26</td>
-          <td><Link href="https://us-east-1.console.aws.amazon.com"
+          <td><Link href="https://us-east-1.console.aws.amazon.com/cost-management/home?region=us-east-1#"
                     target="_blank">us-east-1.console.aws.amazon.com</Link></td>
         </tr>
         </tbody>
       </table>
-      <Box margin={'l'}>
-        <h4>说明：</h4>
-        <ol>
-          <li>说明1</li>
-          <li>说明2</li>
-          <li>说明3</li>
-        </ol>
-      </Box>
-    </Box>
+    </Box> 
   );
 };
 

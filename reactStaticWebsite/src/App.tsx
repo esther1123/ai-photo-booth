@@ -50,9 +50,9 @@ const App = () => {
       navigation={
         <SideNavigation
           activeHref={'#'}
-          header={{ href: '#', text: '服务' }}
+          header={{ href: '#', text: 'Tag 工作台' }}
           items={[
-            { type: 'link', text: '服务状态管理', href: '#' }
+            { type: 'link', text: 'Tag 管理', href: '#' }
           ]}
         />
       }
@@ -61,8 +61,8 @@ const App = () => {
       breadcrumbs={
         <BreadcrumbGroup
           items={[
-            { text: '服务', href: '#' },
-            { text: '服务状态管理', href: '#' }
+            { text: 'Tag 工作台', href: '#' },
+            { text: 'Tag 管理', href: '#' }
           ]}
         />
       }

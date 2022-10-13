@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 
 const Whitelist = () => {
   const [showCreate, setShowCreate] = useState(false);
+  const [content, setContent] = useState("");
 
   return (
     <>
@@ -23,16 +24,8 @@ const Whitelist = () => {
         </thead>
         <tbody>
         <tr>
-          <td>??</td>
-          <td>??</td>
-        </tr>
-        <tr>
-          <td>??</td>
-          <td>??</td>
-        </tr>
-        <tr>
-          <td>??</td>
-          <td>??</td>
+          <td>arn:aws:sns:us-west-2:764142575323:config-topic</td>
+          <td>ResoureId</td>
         </tr>
         </tbody>
       </table>
@@ -54,16 +47,16 @@ const Whitelist = () => {
         <table>
           <tr>
             <th>内容</th>
-            <td><Input value="" /></td>
+            <td><Input onChange={({ detail }) => setContent(detail.value)} value={content}/></td>
           </tr>
           <tr>
             <th>类型</th>
             <td>
               <Select
-                selectedOption={{ label: 'Resource Type', value: 't' }}
+                selectedOption={{ label: 'ResourceId', value: 't' }}
                 options={[
-                  { label: 'Resource Type', value: 'type' },
-                  { label: 'Resource ID', value: 'id' }
+                  { label: 'ResourceId', value: 'id' },
+                  { label: 'ResourceType', value: 'type' }
                 ]} />
             </td>
           </tr>
