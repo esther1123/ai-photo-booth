@@ -1,12 +1,24 @@
-import { Box, Button, Icon, Input, Link, Modal, Pagination, Select, SpaceBetween } from '@cloudscape-design/components';
+import {
+  Box,
+  Button,
+  Icon,
+  Input,
+  Modal,
+  Pagination,
+  Select,
+  SpaceBetween,
+  Spinner
+} from '@cloudscape-design/components';
 import React, { useState } from 'react';
 
 const Construct = () => {
   const [showCreate, setShowCreate] = useState(false);
   const [showCreateForm, setShowCreateForm] = useState(false);
   const [showTagValue, setShowTagValue] = useState(false);
-  const [name, setName] = useState("");
-  const [pin, setPin] = useState("");
+  const [name, setName] = useState('');
+  const [pin, setPin] = useState('');
+  const [showNewCreatedItem, setShowNewCreatedItem] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   return (
     <>
@@ -15,10 +27,11 @@ const Construct = () => {
           <span style={{ float: 'left' }}>
             <h2>成本标签</h2>
           </span>
-          <span style={{ float: 'right' }}>
+          <span style={{ float: 'right', marginLeft: '20px' }}>
             <Button onClick={() => setShowCreate(true)}><Icon name='add-plus' />创建</Button>
           </span>
-          <a href="https://us-east-1.console.aws.amazon.com/billing/home#/tags" target="_blank" rel="noreferrer" style={{ float: 'right' }}>
+          <a href="https://us-east-1.console.aws.amazon.com/billing/home#/tags" target="_blank" rel="noreferrer"
+             style={{ float: 'right' }}>
             <Button>启用地址</Button>
           </a>
         </div>
@@ -33,13 +46,14 @@ const Construct = () => {
           </tr>
           </thead>
           <tbody>
-          <tr>
-            <td>新房</td>
-            <td>chengbenA</td>
-            <td><Icon name="add-plus" />已开启</td>
-            <td>CA</td>
-            <td><Button variant='link' onClick={() => setShowTagValue(true)}>详情</Button></td>
-          </tr>
+          {showNewCreatedItem ?
+            <tr>
+              <td>新房</td>
+              <td>chengbenA</td>
+              <td><Icon name="add-plus" />已开启</td>
+              <td>CA</td>
+              <td><Button variant='link' onClick={() => setShowTagValue(true)}>详情</Button></td>
+            </tr> : null}
           </tbody>
         </table>
       </div>
@@ -129,7 +143,14 @@ const Construct = () => {
           <Box float="right">
             <SpaceBetween direction="horizontal" size="xs">
               <Button variant="link" onClick={() => setShowCreate(false)}>取消</Button>
-              <Button variant="primary" onClick={() => setShowCreate(false)}>确定</Button>
+              <Button variant="primary" disabled={isLoading} onClick={() => {
+                setIsLoading(true);
+                setTimeout(() => {
+                  setShowNewCreatedItem(true);
+                  setShowCreate(false);
+                  setIsLoading(false);
+                }, 1500);
+              }}>确定{isLoading ? <span style={{ marginLeft: '5px' }}><Spinner /></span> : null}</Button>
             </SpaceBetween>
           </Box>
         }
@@ -137,7 +158,7 @@ const Construct = () => {
         <table>
           <tr>
             <th>栏目名称</th>
-            <td><Input onChange={({ detail }) => setName(detail.value)} value={name}/></td>
+            <td><Input onChange={({ detail }) => setName(detail.value)} value={name} /></td>
           </tr>
           <tr>
             <th>Tag-key</th>
@@ -158,7 +179,7 @@ const Construct = () => {
           </tr>
           <tr>
             <th>缩写</th>
-            <td><Input onChange={({ detail }) => setPin(detail.value)} value={pin}/></td>
+            <td><Input onChange={({ detail }) => setPin(detail.value)} value={pin} /></td>
           </tr>
           {/* <tr>
             <th>备注</th>
